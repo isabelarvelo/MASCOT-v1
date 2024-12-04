@@ -59,16 +59,14 @@ Classroom practices do not always last a fixed amount of time. Sometimes an inst
 
 RoBERTa (Robustly Optimized BERT Approach) is a popular model was trained using a massive 160GB text dataset (more than 10 times larger than BERT's), incorporating data from diverse sources including Wikipedia, news articles, Reddit content, and story-like text from Common Crawl. RoBERTa introduces several key technical improvements to BERT's architecture. It eliminates the Next Sentence Prediction (NSP) objective, finding that this removal either matches or improves downstream task performance. The model employs dynamic masking instead of static masking, generating new mask patterns each time data passes through the model. It also uses larger batch sizes (up to 8K sequences) and longer training sequences, which improves both the model's perplexity on masked language modeling and end-task accuracy. Like BERT, RoBERTa is pretrained using Masked Language Modeling (MLM), where it randomly masks 15% of words in input sentences and learns to predict them, enabling bidirectional representation learning. These optimizations led to state-of-the-art performance on various NLP benchmarks at the time of its release, including GLUE tasks, SQuAD, and RACE, demonstrating particular strength in tasks like natural language inference, textual entailment, and question answering.
 
-Algorithm: RoBERTa vs BERT Training Comparison
-
-/* Training approach differences between models */
+**Algorithm: RoBERTa vs BERT Training Comparison**
 
 Input: Text corpus D
 Input: θ, initial transformer parameters
 Output: θ̂, the trained parameters
 Hyperparameters: Nepochs ∈ N, η ∈ (0, ∞), vocab_size, batch_size, max_steps
 
-**BERT Training**
+*BERT Training*
 ```
 BERT(D, θ):
     V ← BuildCharacterBPE(D, vocab_size=30K)
@@ -116,28 +114,28 @@ RoBERTa(D, θ):
 
 Main differences:
 1. Masking: Static (BERT) vs Dynamic per step (RoBERTa)
-  • BERT creates masks once during preprocessing and reuses them, seeing same mask ~4 times
-  • RoBERTa generates new masks every time data is accessed, increasing training diversity
+  * BERT creates masks once during preprocessing and reuses them, seeing same mask ~4 times
+  * RoBERTa generates new masks every time data is accessed, increasing training diversity
 
 2. Batch size: 256 (BERT) vs 8K (RoBERTa) 
-  • RoBERTa's larger batch size enables better parallelization and optimization
-  • Requires learning rate scaling (from 1e-4 to 1e-3) and warmup tuning to maintain stability
+  * RoBERTa's larger batch size enables better parallelization and optimization
+  * Requires learning rate scaling (from 1e-4 to 1e-3) and warmup tuning to maintain stability
 
 3. Steps: 1M (BERT) vs 500K (RoBERTa)
-  • Despite fewer steps, RoBERTa sees more data due to larger batch size
-  • Total compute remains similar but RoBERTa's distribution is more efficient
+  * Despite fewer steps, RoBERTa sees more data due to larger batch size
+  * Total compute remains similar but RoBERTa's distribution is more efficient
 
 4. NSP objective: Present in BERT, removed in RoBERTa
-  • BERT uses NSP to learn document relationships by predicting if segments are consecutive
-  • RoBERTa shows NSP doesn't improve downstream tasks and may hurt MLM training
+  * BERT uses NSP to learn document relationships by predicting if segments are consecutive
+  * RoBERTa shows NSP doesn't improve downstream tasks and may hurt MLM training
 
 5. Input format: Sentence pairs (BERT) vs packed sentences (RoBERTa)
-  • BERT segments are limited by NSP requirement to use sentence pairs
-  • RoBERTa packs continuous text to maximize usage of 512 token limit
+  * BERT segments are limited by NSP requirement to use sentence pairs
+  * RoBERTa packs continuous text to maximize usage of 512 token limit
 
 6. Tokenization: Character BPE (BERT) vs Byte BPE (RoBERTa)
-  • RoBERTa's byte-level BPE can encode any text without "unknown" tokens
-  • Larger vocabulary (50K vs 30K) enables more efficient encoding of common patterns
+  * RoBERTa's byte-level BPE can encode any text without "unknown" tokens
+  * Larger vocabulary (50K vs 30K) enables more efficient encoding of common patterns
 
 
 ### In-context learning with LLM
