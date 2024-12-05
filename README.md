@@ -6,7 +6,7 @@ The objective of this project is to label sections of audio files with specific 
 
 ### Motivation 
 
-Effective classroom management is crucial for fostering student engagement and academic success, especially in inclusive classrooms with diverse learning and behavioral needs. Many teachers face challenges in consistently applying evidence-based practices due to resource constraints and the complexity of classroom dynamics. The tool we are building aims to provide teachers with real-time, individualized feedback to overcome the limitations of traditional, labor-intensive observation methods. 
+Effective classroom management is crucial for fostering student engagement and academic success. Many teachers face challenges in consistently applying evidence-based practices due to resource constraints and the complex classroom dynamics. The tool we are building aims to provide teachers with real-time, individualized feedback to overcome the limitations of traditional, labor-intensive observation methods. 
 
 ### Classroom Observation Codes
 
