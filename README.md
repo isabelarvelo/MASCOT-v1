@@ -381,7 +381,7 @@ I did not train the model specifically on Concept-Level labels, but if we aggreg
 
 ## Data 
 
-The dataset includes 115 audio recordings of classroom instruction from 30 elementary school teachers. The audio , label files, and intermediate forms of data used for the project are not included in the repository because it is not publicly available and contains sensitive information. 
+The dataset includes 115 audio recordings of classroom instruction from 30 elementary school teachers. The audio , label files, and intermediate forms of data used for the project are not included in the repository because it is not publicly available and contains sensitive information. The models are proprietary while in development, so they are not publicly available for the time being. If you would like to independenty test the models discussed, please contact me. 
 
 ## Discussion 
 
